@@ -24,3 +24,4 @@ npm run build
 ```
 
 take into account that you need to install dependencies in order to make the project work
+also you can check the project in the deploy https://papito-music.vercel.app/home

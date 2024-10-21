@@ -1,6 +1,6 @@
-# my-electron-app
+# Papito music app
 
-## Project setup
+## To start the project you need to input the following commands in the te
 ```
 npm install
 ```

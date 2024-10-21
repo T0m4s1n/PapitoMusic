@@ -46,17 +46,18 @@
     <div v-if="currentSong" class="mini-player slide-in">
       <p>Listening to: {{ currentSong.title }}</p>
       <img :src="currentSong.cover" alt="Cover" class="album-cover" />
-      <audio
-        :src="currentSong.file"
-        controls
-        autoplay
-        @ended="playNextSong"
-      ></audio>
+      <button @click="playPreviousSong" class="prev-button"></button>
+      <button @click="playNextSong" class="next-button"></button>
+        <audio
+          :src="currentSong.file"
+          controls
+          autoplay
+          @ended="playNextSong"
+        ></audio>
+      </div>
       <button @click="closePlayer" class="close-player">✖</button>
     </div>
-  </div>
 </template>
-
 <script lang="ts">
 import { defineComponent, ref, onMounted } from "vue";
 
@@ -301,6 +302,30 @@ export default defineComponent({
       }
     };
 
+    const playPreviousSong = () => {
+      if (!playlist.value.head) {
+        currentSong.value = null;
+        return;
+      }
+      let currentNode = playlist.value.tail;
+      if (!currentSong.value) {
+        currentSong.value = playlist.value.tail?.value || null;
+        return;
+      }
+      while (currentNode && currentNode.value !== currentSong.value) {
+        if (currentNode.prev) {
+          currentNode = currentNode.prev;
+        } else {
+          break;
+        }
+      }
+      if (currentNode?.prev) {
+        currentSong.value = currentNode.prev.value;
+      } else {
+        currentSong.value = playlist.value.tail?.value || null;
+      }
+    };
+
     const closePlayer = () => {
       currentSong.value = null;
     };
@@ -344,6 +369,7 @@ export default defineComponent({
       playNextSong,
       onDragStart,
       onDrop,
+      playPreviousSong,
     };
   },
 });
@@ -483,6 +509,44 @@ export default defineComponent({
   margin-top: 5px;
   appearance: none;
   font-family: "Geist", Monospace;
+}
+
+.prev-button,
+.next-button {
+  background-color: #da627d;
+  color: white;
+  padding: 4px 8px;
+  text-decoration: none;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  font-size: 12px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.prev-button:hover,
+.next-button:hover {
+  background-color: #f9df74;
+  transition: background-color 0.3s ease;
+}
+
+.prev-button {
+  left: 10px;
+}
+
+.next-button {
+  right: 10px;
+}
+
+.prev-button::before {
+  content: "◀";
+}
+
+.next-button::before {
+  content: "▶";
 }
 
 .mini-player .album-cover {

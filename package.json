@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "npm i --save-dev @types/three",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "electron:serve": "npm run serve & electron .",

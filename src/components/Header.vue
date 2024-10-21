@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="logo-container">
-      <h1 class="logo">PapitoMusic</h1>
+      <h1 class="logo" @click="navigateTo('/Home)">PapitoMusic</h1>
     </div>
     <nav class="nav">
       <ul class="nav-list">
@@ -27,9 +27,9 @@ export default defineComponent({
     return {
       links: [
         { name: "Home", url: "/Home" },
-        { name: "Discover", url: "/Discover" },
-        { name: "Playlists", url: "/Playlists" },
-        { name: "Profile", url: "/Profile" },
+        { name: "Discover", url: "/Home" },
+        { name: "Playlists", url: "/Home" },
+        { name: "Profile", url: "/Home" },
       ],
     };
   },

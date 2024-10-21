@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="logo-container">
-      <h1 class="logo" @click="navigateTo('/Home')">PapitoMusic</h1>
+      <h1 class="logo">PapitoMusic</h1>
     </div>
     <nav class="nav">
       <ul class="nav-list">

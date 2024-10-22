@@ -225,6 +225,12 @@ export default defineComponent({
           .href,
       },
       {
+        title: "I Really Want To Stay At Your House",
+        artist: "Rosa Walton",
+        cover: new URL("@/assets/music/cyber/cyber.jpg", import.meta.url).href,
+        file: new URL("@/assets/music/cyber/cyber.mp4", import.meta.url).href,
+      },
+      {
         title: "Buenos dias Amor [LIVE]",
         artist: "Jose Jose",
         cover: new URL(
